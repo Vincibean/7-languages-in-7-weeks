@@ -8,3 +8,8 @@ module AllEven where
 
   allEven3 :: [Integer] -> [Integer]
   allEven3 = filter even
+
+  allEven4 :: [Integer] -> [Integer]
+  allEven4 = reverse . allEvenAcc []
+    where allEvenAcc acc [] = acc  
+          allEvenAcc acc (h:t) = if even h then allEvenAcc (h:acc) t else allEvenAcc acc t 
