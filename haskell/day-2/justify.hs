@@ -1,6 +1,8 @@
 module Justify where 
   import BreakLinesNumbers
 
-  foo :: [(Int, String)] -> [(Int, String)]
-  foo ts = let mx = maximum $ map (length . snd) ts in map (\(f,s) -> (f,(rj mx s))) ts
-    where rj mx s = (replicate (mx - (length s)) ' ') ++ s
+  rightJustify :: [(Int, String)] -> [(Int, String)]
+  rightJustify ts = map (\(f,s) -> (f,rj mx s)) ts
+    where mx = maximum $ map (length . snd) ts
+          rj mx s = (replicate toRep ' ') ++ s
+            where toRep = mx - length s
